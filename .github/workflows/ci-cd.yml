@@ -25,14 +25,15 @@ jobs:
         run: npm test
 
   deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+    - name: Check out code
+      uses: actions/checkout@v2
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./src  # Cambia esto si `index.html` está en otra carpeta
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./src  # Aquí se especifica la carpeta con los archivos estáticos (index.html)
+        publish_branch: gh-pages  # Se especifica la rama en la que se desplegará (por defecto es gh-pages)
